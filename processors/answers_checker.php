@@ -3,8 +3,8 @@
 require "../_config.php";
 require "../_functions.php";
 
-if (isset($_POST['data']) && isset($_POST['answers'])) {
-    $data = $_POST['data'];
+if (isset($_POST['user_data']) && isset($_POST['answers'])) {
+    $data = $_POST['user_data'];
     $answers = $_POST['answers'];
 
     // echo print_r($data);
@@ -30,19 +30,26 @@ if (isset($_POST['data']) && isset($_POST['answers'])) {
             } else {
                 $number_of_wrong = $number_of_wrong + 1;
             }
-
         }
     }
+
+    // {"name":"Muhammad Azam","father_name":"Ashraf","gr":"1212","timing":"12-13","course":"3","teacher_name":"12qw"}
+    $name = mysqli_real_escape_string($conn, $data['name']);
+    $father_name = mysqli_real_escape_string($conn, $data['father_name']);
+    $gr = mysqli_real_escape_string($conn, $data['gr']);
+    $timing = mysqli_real_escape_string($conn, $data['timing']);
+    $course = mysqli_real_escape_string($conn, $data['course']);
+    $teacher_name = mysqli_real_escape_string($conn, $data['teacher_name']);
+
+    $insert_sql = "INSERT INTO `results`(`name`, `father_name`, `gr`, `timing`, `course_id`, `teacher`, `number_of_correct`, `number_of_wrong`, `number_of_skipped`) 
+    VALUES ('$name','$father_name','$gr','$timing','$course','$teacher_name','$number_of_correct','$number_of_wrong','$number_of_skipped')";
+    $insert_res = mysqli_query($conn, $insert_sql);
 
     echo json_encode([
         "number_of_correct" => $number_of_correct,
         "number_of_wrong" => $number_of_wrong,
         "number_of_skipped" => $number_of_skipped,
     ]);
-    // while ($row = mysqli_fetch_assoc($get_correct_option_res)) {
-    // }
-    // 
-
 }
 
 

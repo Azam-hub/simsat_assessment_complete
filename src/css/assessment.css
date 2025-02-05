@@ -12,8 +12,9 @@ header {
     z-index: 10;
 }
 .my-placeholder {
-    height: 78px;
+    height: 124px;
     width: 100%;
+    background-color: rgb(237, 237, 237);
 }
 
 section {
@@ -76,4 +77,13 @@ section .content {
 }
 .question-box.danger p svg {
     display: block !important;   
+}
+
+
+.questions-div {
+    display: none;
+}
+
+.result-div {
+    display: none;
 }

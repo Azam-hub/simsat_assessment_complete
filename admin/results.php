@@ -1,3 +1,12 @@
+<?php
+
+require "../_config.php";
+require "_protected.php";
+require "../_functions.php";
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,15 +14,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- CSS only -->
-    <link rel="stylesheet" href="../src/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../src/fontawesome/css/all.min.css">
-    <link rel="stylesheet" href="../src/fonts/fonts.css">
-    <link rel="stylesheet" href="../src/css/_utils.css">
-    <link rel="stylesheet" href="src/css/login.css">
-    <link rel="stylesheet" href="src/css/_sidebar_header.css">
+    <?php include "components/css_links.php"; ?>
 
-    <title>Login</title>
+    <title>Results</title>
 </head>
 
 <body>
@@ -21,7 +24,7 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="course-head">Result</h1>
+                    <h1 class="modal-title fs-5" id="course-head">Result of <q id="student-name" class="fw-bold"></q></h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="result p-3">
@@ -32,7 +35,7 @@
                         <div class="col d-flex flex-column">
                             <div >
                                 <p class="mb-2">
-                                    <b>Total Questions:</b> <span id="result-total-questions"></span>
+                                    <b>Total Questions:</b> <span id="total-questions"></span>
                                 </p>
                             </div>
                             <div >
@@ -70,7 +73,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-success">Save</button>
+                    <!-- <button type="submit" class="btn btn-success">Save</button> -->
                 </div>
             </div>
         </div>
@@ -80,141 +83,11 @@
 
         <div class="row flex-nowrap h-100">
 
-            <div class=" sidebar pt-3 pb-2 d-flex flex-column justify-content-between">
-                <div>
-                    <a href="#" class="text-decoration-none logo-row row align-items-center justify-content-center gap-2">
-                        <div class="col-auto px-0">
-                            <img src="../src/img/favicon.png" width="50px" class="logo" alt="">
-                        </div>
-                        <div class="right col-auto d-flex align-items-center px-0 position-relative">
-                            <h3 class="my-0">SIMSAT</h3>
-                            <span class="position-absolute badge rounded-2 bg-primary text-light fw-normal p-1" style="font-size: 10px; right: -29px; top: -7px;">
-                                BETA
-                            </span>
-                        </div>
-                    </a>
-                    <hr class="border-2 border-white">
-                    <div class="row align-items-center px-1">
-                        <div class="left col-auto ps-2">
-                            <img src="../src/img/user.png"
-                            onerror="this.onerror=null;this.src='../src/img/user.png';"
-                            class="user-pic rounded-circle" alt="">
-                        </div>
-                        <div class="right col pe-2 ps-0 d-flex align-items-center text-center">
-                            <p class="mb-0">Muhammad Azam</p>
-                        </div>
-                    </div>
-                    <hr class="border-2 border-white">
-
-                    <div class="link-section  mb-1">
-                        <div class="head d-flex justify-content-between cursor-pointer active">
-                            <a href="#" class=" row mx-0 p-2 py-2 bg-transparent text-decoration-none">
-                                <div class="left col-auto px-0">
-                                    <i class="fa-solid fa-bullhorn"></i>
-                                </div>
-                                <div class="right row col px-0 justify-content-between">
-                                    <div class="col">
-                                        <span class="ms-2">Announcements</span>
-                                    </div>  
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="link-section mb-1">
-                        <div class="head row mx-0 p-2 cursor-pointer   ">
-                            <div class="left col-auto px-0">
-                                <i class="fa-solid fa-file-circle-question"></i>
-                            </div>
-                            <div class="right row col px-0 justify-content-between">
-                                <div class="col">
-                                    <span class="ms-2">Set Questions</span>
-                                    
-                                </div>
-                                <div class="col-auto">
-                                    <i class="chevron fa-solid fa-chevron-right"></i>
-                                    
-                                </div>
-                            </div>
-                        </div>
-                        <div class="ps-3 links">
-                            <div class="row flex-column border-start border-2">
-                                <a href="#" class="mx-0 col row mt-1 px-3 py-2 text-decoration-none">
-                                    <div class="col-auto px-0">Web</div>
-                                </a>
-                                <a href="#" class="mx-0 col row mt-1 px-3 py-2 text-decoration-none">
-                                    <div class="col-auto px-0">Graphics</div>
-                                </a>
-                                <!-- <p>No courses added.</p> -->
-                                
-                            </div>
-                        </div>
-                    </div>
-
-
-                </div>
-                <div class="right">
-                    <div class="row mx-0 mb-0 mt-4">
-                        <hr class="border-2 border-white mb-2">
-                        <p class="m-0 text-center" style="font-size: 13px">Designed and Developed by <b><q>Muhammad Azam</q></b></p>
-                    </div>
-                </div>
-            </div>
-            <div class="placeholder"></div>
+            <?php include "components/sidebar.php" ?>
 
             <div class=" content bg-light">
                 
-                <header class="border-bottom  py-2" id="header">
-                    <div class="row align-items-center justify-content-between position-relative">
-                        <div class="col-auto ">
-                            <i class="fa-solid fa-bars fs-5 cursor-pointer"></i>
-                        </div>
-                        <div class="col-auto row align-items-center ">
-                            <div class="user-btn col-auto row column-gap-2 align-items-center px-3 mx-0 cursor-pointer">
-                                <div class="col-auto px-0">
-                                    <img 
-                                    src="../src/img/user.png" 
-                                    onerror="this.onerror=null;this.src='../src/img/user.png';"
-                                    class=" rounded-circle user-pic" alt="User Pic">
-                                </div>
-                                <div class="col-auto px-0 d-sm-block d-none">
-                                    <p class="m-0">Muhammad Azam</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="user-dialog-box border border-2 border-dark-subtle rounded-3 px-0 shadow">
-                            <div class="user-details py-3 rounded-top-3">
-                                <div class="row justify-content-center">
-                                    <div class="col-auto">
-                                        <img src="../src/img/user.png"
-                                        onerror="this.onerror=null;this.src='../src/img/user.png';"
-                                        class="rounded-circle " width="80px" height="80px" alt="User Pic">
-                                    </div>
-                                </div>
-                                <div class="row justify-content-center">
-                                    <div class="col-auto">
-                                        <p class="my-0 text-center">
-                                            Super Admin
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="row justify-content-center">
-                                    <div class="col-auto">
-                                        <p class="my-0 mt-1" style="font-size: 12px;">
-                                            Admin Since 12 Jan, 2021
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="actions bg-light rounded-bottom-3">
-                                <div class="row justify-content-center py-2">
-                                    <div class="col-auto">
-                                        <a href="#" class="btn btn-outline-dark ">Sign out</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </header>
+                <?php include "components/header.php" ?>
 
                 <!-- -------------------------------- Main Content Yield ---------------------------------- -->
                 <!-- @yield('content') -->
@@ -223,9 +96,9 @@
                         <div class="col">
                             <h4 class="fw-semibold">Results</h4>
                         </div>
-                        <div class="col">
+                        <div class="col mt-4">
                             <div class="table-responsive">
-                                <table id="result-table" class="table table-striped table-bordered table-hover border-dark-subtle">
+                                <table id="results-table" class="table table-striped table-bordered table-hover border-dark-subtle">
                                     <thead>
                                         <tr>
                                             <th>S. No.</th>
@@ -244,7 +117,51 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr data-student-id="1">
+                                        <?php
+                                        
+                                        $get_results_sql = "SELECT courses.name AS course_name, results.id, results.name, results.father_name, results.gr, results.timing, results.teacher, results.number_of_correct, results.number_of_wrong, results.number_of_skipped, results.created_at 
+                                        FROM `results` INNER JOIN `courses` ON `results`.`course_id`=`courses`.`id` WHERE `results`.`is_deleted`='0' ORDER BY `results`.`id` DESC";
+                                        $get_results_res = mysqli_query($conn, $get_results_sql);
+
+                                        $i = 0;
+
+                                        if (mysqli_num_rows($get_results_res) > 0) {
+                                            while ($row = mysqli_fetch_assoc($get_results_res)) {
+                                                echo '
+                                                <tr data-student-id="1">
+                                                    <td>'.++$i.'.</td>
+                                                    <td>'.$row['gr'].'</td>
+                                                    <td>'.$row['name'].'</td>
+                                                    <td>'.$row['father_name'].'</td>
+                                                    
+                                                    <td>'.\DateTime::createFromFormat('G', explode('-', $row['timing'])[0])->format('h:i a') . ' to ' . \DateTime::createFromFormat('G', explode('-', $row['timing'])[1])->format('h:i a').'</td>
+                                                    <td>'.$row['course_name'].'</td>
+                                                    <td>'.$row['teacher'].'</td>
+                                                    <td>
+                                                        <button 
+                                                        class="btn btn-sm btn-primary view-btn" 
+                                                        data-bs-toggle="modal" 
+                                                        data-bs-target="#result-modal" 
+ 
+                                                        data-name="'.$row['name'].'" 
+                                                        data-number_of_correct="'.$row['number_of_correct'].'" 
+                                                        data-number_of_wrong="'.$row['number_of_wrong'].'" 
+                                                        data-number_of_skipped="'.$row['number_of_skipped'].'" 
+
+                                                        >View</button>
+                                                        <button class="btn btn-sm btn-danger del-btn" data-result-id="1" data-name="azam" >Delete</button>
+                                                    </td>
+                                                    <td>' . date('h:i a <b>||</b> d M, Y', strtotime($row['created_at'])) . '</td>
+                                                </tr>
+                                                ';
+                                            }
+                                        } else {
+                                            echo "No results to show.";
+                                        }
+                                        
+                                        
+                                        ?>
+                                        <!-- <tr data-student-id="1">
                                             <td>1.</td>
                                             <td>gr</td>
                                             <td>Azam</td>
@@ -256,9 +173,9 @@
                                                 <button class="btn btn-sm btn-primary view-btn"  data-bs-toggle="modal" data-bs-target="#result-modal" data-result-id="1" data-name="azam" >View</button>
                                                 <button class="btn btn-sm btn-danger del-btn" data-result-id="1" data-name="azam" >Delete</button>
                                             </td>
-                                            <!-- <td>{!! date ('h:i a <b>||</b> d M, Y', strtotime($result->created_at)) !!}</td> -->
+                                            
                                             <td>date</td>
-                                        </tr>
+                                        </tr> -->
                                     </tbody>
                                 </table>
                             </div>
@@ -271,37 +188,62 @@
         </div>
     </div>
 </body>
-<!-- Scripts -->
-<script src="../src/jquery/jquery.js"></script>
-<script src="../src/bootstrap/js/bootstrap.min.js"></script>
-<script src="../src/fontawesome/js/all.min.js"></script>
+
+<?php include "components/script_links.php"; ?>
 
 <script>
-    $(document).ready(function() {
-        // Add Course
-        $('.modal form').submit(function(e) {
-            e.preventDefault();
-            
-            // $('#course-modal').modal('show');
-            if ($('#course-name').val() == "") {
-                $('#course-name').addClass('is-invalid');
-                $('#course-name').next().text('Course name is required');
-            } else {
-                $('#course-name').removeClass('is-invalid');
-                $('#course-name').next().text('');
-            }
+    // Datatable initialization
+    $('#results-table').DataTable({
+        dom: 'lBfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ],
+        "aaSorting": []
+
+    });
 
 
-            if ($('#questions-to-ask').val() == "") {
-                $('#questions-to-ask').addClass('is-invalid');
-                $('#questions-to-ask').next().text('Questions to ask is required');
-            } else {
-                $('#questions-to-ask').removeClass('is-invalid');
-                $('#questions-to-ask').next().text('');
-            }
-            
-        })
-    
+    $(".view-btn").click(function () {
+        let name = $(this).data("name")
+        let number_of_correct = parseInt($(this).data("number_of_correct"))
+        let number_of_wrong = parseInt($(this).data("number_of_wrong"))
+        let number_of_skipped = parseInt($(this).data("number_of_skipped"))
+
+        let total_questions = parseInt(number_of_correct) + parseInt(number_of_wrong) + parseInt(number_of_skipped);
+        let total_marks = total_questions;
+
+        $("#student-name").text(name)
+
+        $("#total-questions").text(total_questions)
+        $("#correct-answers").text(number_of_correct)
+        $("#wrong-answers").text(number_of_wrong)
+        $("#skipped-questions").text(number_of_skipped)
+
+        $("#total-marks").text(total_marks)
+        $("#obtained-marks").text(number_of_correct)
+
+        let percentage = ((number_of_correct * 100) / total_marks).toFixed(2);
+        $("#percentage").text(`${percentage}%`)
+
+        let grade;
+        if (percentage > 90) {
+            grade = "A+"
+        } else if (percentage > 80) {
+            grade = "A1"
+        } else if (percentage > 70) {
+            grade = "A"
+        } else if (percentage > 60) {
+            grade = "B"
+        } else if (percentage > 50) {
+            grade = "C"
+        } else if (percentage > 40) {
+            grade = "D"
+        } else {
+            grade = "FAIL!"
+        }
+
+        $("#grade").text(grade)
+
     })
 </script>
 </html>

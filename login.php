@@ -28,6 +28,8 @@ if (isset($_GET['unauthorized']) && $_GET['unauthorized'] == true) {
     <link rel="stylesheet" href="src/css/_utils.css">
     <link rel="stylesheet" href="src/css/login.css">
 
+    <link rel="shortcut icon" href="src/img/favicon.png" type="image/x-icon">
+
     <title>Login</title>
 </head>
 
@@ -116,6 +118,7 @@ if (isset($_GET['unauthorized']) && $_GET['unauthorized'] == true) {
                 </div>
                 <button type="submit" class="mt-3 w-100 btn btn-primary">Login</button>
             </form>
+            <p class="mt-3 mb-0 pt-2 text-center border-top border-secondary-subtle" style="font-size: 15px;">Designed and Developed by <q class="fw-bold">Muhammad Azam</q></p>
         </div>
     </div>
 </body>
