@@ -1,0 +1,218 @@
+
+/* ----------------------- Sidebar START ------------------------ */
+
+.container-fluid {
+    min-height: 100vh !important;
+    /* overflow-x: hidden; */
+}
+
+/* .container-fluid .sidebar {
+    
+} */
+
+.container-fluid .content {
+    transition: .5s;
+    min-height: 100vh;
+}
+
+.sidebar * {
+    color: #cccccc;
+}
+
+.sidebar {
+    transition: .3s;
+    /* overflow-x: hidden; */
+    /* background-color: #47454b; */
+    background: rgb(217,24,31);
+    background: linear-gradient(45deg, rgba(217,24,31,1) 0%, rgba(106,106,109,1) 100%);
+    width: 250px;
+    position: fixed;
+    z-index: 3;
+    height: 100vh;
+    overflow-y: auto;
+
+}
+.sidebar::-webkit-scrollbar-track{
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    background: transparent;
+}
+.sidebar::-webkit-scrollbar{
+    width: 5px;
+    background: transparent;
+}
+.sidebar::-webkit-scrollbar-thumb{
+    background-color: #ff4e4e;
+    border: 0px solid #555555;
+    border-radius: 8px;
+}
+
+.placeholder {
+    background-color: #fff;
+    transition: .3s;
+}
+
+.sidebar + .placeholder {
+    width: 250px;
+    z-index: -1;
+}
+
+/* .sidebar.close {
+    width: 57px;
+    overflow-y: hidden;
+}
+.sidebar.close {
+    width: 57px;
+}
+.sidebar.close .right{
+    display: none !important;
+}
+.sidebar.close  + .placeholder {
+    width: 57px;
+}
+
+.sidebar.close:hover {
+    width: 250px;
+    overflow-y: auto;
+}
+.sidebar.close:hover .right {
+    display: flex !important;
+}
+.sidebar.close:hover + .placeholder {
+    width: 250px;
+} */
+
+.sidebar .logo-row .right * {
+    /* width: 160px; */
+    color: #000;
+    font-weight: 800;
+}
+
+
+.link-section .head,
+.link-section .links a {
+    transition: .3s;
+    border-radius: 5px;
+}
+
+.link-section .head:hover,
+.link-section .links a:hover {
+    color: #e4e4e4;
+    background-color: #f43e3e;
+}
+
+.link-section .head.active {
+    background-color: #f8f9fa;
+    position: relative;
+}
+.link-section .head.active * {
+    color: #000 !important;
+
+}
+
+.link-section .head.active::before, .link-section .head.active::after {
+    content: "";
+    position: absolute;
+    width: 37px;
+    height: 37px;
+    background-color: transparent;
+    z-index: -1;
+    border-radius: 50%;
+}
+.link-section .head.active::before {
+    right: -12px;
+    top: -37px;
+    box-shadow: 18px 19px 0 4px #f8f9fa;
+    
+}
+.link-section .head.active::after {
+    right: -12px;
+    bottom: -37px;
+    box-shadow: 18px -19px 0 4px #f8f9fa;
+}
+
+.link-section .head .chevron {
+    transition: .5s;
+}
+/* .link-section .head .chevron.rotate {
+    transform: rotate(90deg);
+} */
+
+.link-section .links {
+    display: none;
+}
+
+.content {
+    width: calc(100vw - 17px - 250px);
+}
+
+/* .sidebar.close + .content {
+    width: calc(100vw - 17px - 57px);
+} */
+
+/* ----------------------- Sidebar END ------------------------ */
+
+
+/* ----------------------- Header START ------------------------ */
+
+.user-pic {
+    width: 38px;
+    height: 38px;
+    box-shadow: 0px 2px 10px -2px #777777;
+}
+
+.user-dialog-box .user-details {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.user-dialog-box {
+    display: none;
+    width: 300px;
+    position: absolute;
+    top: 110%;
+    right: 0;
+    z-index: 2;
+}
+
+/* ----------------------- Header END ------------------------ */
+
+
+
+@media screen and (max-width: 1200px) {
+    .bg {
+        display: block;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-color: #00000071;
+        z-index: 1;
+    }
+    .sidebar {
+        position: absolute;
+        z-index: 2;
+        height: 100vh;
+        /* display: none; */
+        width: 250px;
+        transform: translateX(-101%);
+    }
+    .sidebar .right {
+        display: flex !important;
+    }
+    .placeholder {
+        display: none;
+    }
+    
+    .content {
+        width: 100vw;
+    }
+    
+    /* ********* Here close is inverted means close is opened ******* */
+    .sidebar.close {
+        transform: translateX(0);
+        width: 250px;
+    }
+    .sidebar.close .right {
+        display: flex !important;
+    }
+    
+}

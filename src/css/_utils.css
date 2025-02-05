@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root {
+    --danger-color: #d00c0c;
+}
+
+* {
+    font-family: "Poppins", serif;
+    /* font-family: "Dancing Script", serif; */
+    box-sizing: border-box;
+
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+
+.eye-icon {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 10px;
+    font-size: 18px;
+}
+
+.form-label {
+    font-size: 15px;
+    font-weight: 500;
+    margin-bottom: 4px;
+}
+
+
+/* Datatable css */
+div.dt-container {
+    position: relative;
+}
+
+div.dataTables_length {
+    margin-top: 15px;
+}
+
+
+div.dt-buttons {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 230px;
+}
+div.dt-buttons button {
+    color: #fff !important;
+    background-color: #6c757d !important;
+    border-color: #6c757d !important;
+    border-radius: 6px !important;
+}
+
+
+div.dt-search {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+div.dt-search label {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    
+}
+div.dt-search input {
+    border: 1px solid #000 !important;
+    border-radius: 5px !important;
+    padding: 6px 10px !important;
+    display: block;
+    width: 300px;
+    
+}
+
+
+
+table.dataTable {
+    border-collapse: collapse;
+    margin: 18px 0 25px !important;
+}
+
+/* table.dataTable thead tr:nth-child(1) td {
+    padding: 2px !important;
+}
+
+table.dataTable thead tr:nth-child(1) td input {
+    width: 100%;
+    padding: 4px 8px;
+    font-size: 14px;
+    min-width: 100px;
+}
+table.dataTable thead tr:nth-child(1) td input::placeholder {
+    font-size: 14px;
+}
+table.dataTable thead tr:nth-child(1) td input::before, table.dataTable thead tr:nth-child(1) td input::after {
+    content: '';
+    display: none;
+} */
+
+table.dataTable thead tr:nth-child(1) th {
+    text-align: center;
+}
+table.dataTable td {
+    text-align: left !important;
+}
+
+
+div.dt-paging {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
