@@ -125,6 +125,8 @@ if (isset($_GET['unauthorized']) && $_GET['unauthorized'] == true) {
 <!-- Scripts -->
 <script src="src/jquery/jquery.js"></script>
 <script src="src/bootstrap/js/bootstrap.min.js"></script>
+<script src="src/mousetrap/mousetrap.min.js"></script>
+<script src="src/js/for_login.js"></script>
 <script src="src/fontawesome/js/all.min.js"></script>
 <script src="src/js/lcoalstorageFunctions.js"></script>
 

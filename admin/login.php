@@ -55,6 +55,8 @@ if(isset($_POST['login'])) {
     <link rel="stylesheet" href="../src/css/_utils.css">
     <link rel="stylesheet" href="src/css/login.css">
 
+    <link rel="shortcut icon" href="../src/img/favicon.png" type="image/x-icon">
+
     <title>Login</title>
 </head>
 
