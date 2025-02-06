@@ -149,7 +149,7 @@ require "../_functions.php";
                                                         data-number_of_skipped="'.$row['number_of_skipped'].'" 
 
                                                         >View</button>
-                                                        <button class="btn btn-sm btn-danger del-btn" data-result-id="1" data-name="azam" >Delete</button>
+                                                        <!-- <button class="btn btn-sm btn-danger del-btn" data-result-id="1" data-name="azam" >Delete</button> -->
                                                     </td>
                                                     <td>' . date('h:i a <b>||</b> d M, Y', strtotime($row['created_at'])) . '</td>
                                                 </tr>

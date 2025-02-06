@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Feb 05, 2025 at 01:00 PM
+-- Generation Time: Feb 06, 2025 at 01:50 PM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -117,6 +117,37 @@ INSERT INTO `questions` (`id`, `question`, `correct_option`, `other_options`, `c
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `results`
+--
+
+CREATE TABLE `results` (
+  `id` int NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `father_name` varchar(255) NOT NULL,
+  `gr` varchar(50) NOT NULL,
+  `timing` varchar(50) NOT NULL,
+  `course_id` int NOT NULL,
+  `teacher` varchar(255) NOT NULL,
+  `number_of_correct` int NOT NULL,
+  `number_of_wrong` int NOT NULL,
+  `number_of_skipped` int NOT NULL,
+  `is_deleted` tinyint(1) NOT NULL DEFAULT '0',
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `results`
+--
+
+INSERT INTO `results` (`id`, `name`, `father_name`, `gr`, `timing`, `course_id`, `teacher`, `number_of_correct`, `number_of_wrong`, `number_of_skipped`, `is_deleted`, `created_at`) VALUES
+(1, 'Muhammad Azam', 'Ashraf', '14555', '11-12', 3, 'qwqw', 3, 7, 0, 0, '2025-02-06 03:31:32'),
+(2, 'Muhammad Azam', 'Ashraf', '121212', '12-13', 2, 'qazz', 8, 3, 0, 0, '2025-02-06 04:20:35'),
+(3, 'Muhammad Azam', 'Ashraf', '121212', '12-13', 2, 'qazz', 8, 1, 2, 0, '2025-02-06 04:24:42'),
+(4, 'Legend Azam', 'As', '9999', '20-21', 1, 'asasasas', 1, 7, 2, 0, '2025-02-06 04:29:39');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -153,6 +184,12 @@ ALTER TABLE `questions`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `results`
+--
+ALTER TABLE `results`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -173,6 +210,12 @@ ALTER TABLE `courses`
 --
 ALTER TABLE `questions`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+
+--
+-- AUTO_INCREMENT for table `results`
+--
+ALTER TABLE `results`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `users`
