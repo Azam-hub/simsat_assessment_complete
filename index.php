@@ -12,6 +12,7 @@ $get_courses_res = mysqli_query($conn, $get_courses_sql);
 
 if (mysqli_num_rows($get_courses_res) == 0) {
     echo "401 - Unauthorized Access";
+    header("location: login.php");
     die();
 }
 $get_courses_data = mysqli_fetch_assoc($get_courses_res);
