@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Feb 06, 2025 at 01:50 PM
+-- Generation Time: Feb 06, 2025 at 01:52 PM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -20,6 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `simsat_assessment`
 --
+CREATE DATABASE IF NOT EXISTS `simsat_assessment` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
+USE `simsat_assessment`;
 
 -- --------------------------------------------------------
 
