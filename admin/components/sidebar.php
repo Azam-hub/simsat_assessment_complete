@@ -19,7 +19,7 @@ $get_courses_res = mysqli_query($conn, $get_courses_sql);
 
 <div class=" sidebar pt-3 pb-2 d-flex flex-column justify-content-between">
     <div>
-        <a href="#" class="text-decoration-none logo-row row align-items-center justify-content-center gap-2">
+        <a href="index.php" class="text-decoration-none logo-row row align-items-center justify-content-center gap-2">
             <div class="col-auto px-0">
                 <img src="../src/img/favicon.png" width="50px" class="logo" alt="">
             </div>
