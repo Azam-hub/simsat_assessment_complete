@@ -6,17 +6,31 @@ require "_functions.php";
 $course_id = $_GET['course_id'];
 // echo $course_id;
 $msg = "";
+$questions_to_ask = "";
 
-$get_courses_sql = "SELECT * FROM `courses` WHERE `id`='$course_id'";
-$get_courses_res = mysqli_query($conn, $get_courses_sql);
-
-if (mysqli_num_rows($get_courses_res) == 0) {
+if (isset($_GET['course_id'])) {
+    $course_id = $_GET['course_id'];
+    $get_courses_sql = "SELECT * FROM `courses` WHERE `id`='$course_id'";
+    $get_courses_res = mysqli_query($conn, $get_courses_sql);
+    
+    if (mysqli_num_rows($get_courses_res) == 0) {
+        echo "401 - Unauthorized Access";
+        header("location: login.php");
+        echo "<script>location.href = 'login.php'</script>";
+        exit();
+        die();
+    }
+    $get_courses_data = mysqli_fetch_assoc($get_courses_res);
+    $questions_to_ask = $get_courses_data['questions_to_ask'];
+} else {
     echo "401 - Unauthorized Access";
     header("location: login.php");
+    echo "<script>location.href = 'login.php'</script>";
+    exit();
     die();
 }
-$get_courses_data = mysqli_fetch_assoc($get_courses_res);
-$questions_to_ask = $get_courses_data['questions_to_ask'];
+
+
 
 
 $get_questions_sql = "SELECT * FROM `questions` WHERE `course_id`='$course_id' AND `is_deleted`='0' ORDER BY RAND() LIMIT $questions_to_ask";
@@ -263,8 +277,8 @@ $get_questions_res = mysqli_query($conn, $get_questions_sql);
     $("#get-started-btn").click(function () {
         $(".get-started-div").hide()
         $(".questions-div").show()
-        let seconds = 120;
-        // let seconds = 3600;
+        // let seconds = 120;
+        let seconds = 3600;
         time = setInterval(() => {
             seconds--
             

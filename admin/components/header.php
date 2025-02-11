@@ -64,7 +64,7 @@
             <div class="actions bg-light rounded-bottom-3">
                 <div class="row justify-content-center py-2">
                     <div class="col-auto">
-                        <a href="#" class="btn btn-outline-dark ">Sign out</a>
+                        <a href="logout.php" class="btn btn-outline-dark ">Sign out</a>
                     </div>
                 </div>
             </div>
