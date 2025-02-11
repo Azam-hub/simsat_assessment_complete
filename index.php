@@ -77,7 +77,7 @@ $get_questions_res = mysqli_query($conn, $get_questions_sql);
                 <p class="mb-0 text-center" >Timer: <span id="timer">59:59</span></p>
             </div>
             <div class="col-auto">
-                <h6 class="m-0">Hi, <span id="student-name">Muhammad Azam</span></h6>
+                <h6 class="m-0">Hi, <span id="student-name"></span></h6>
             </div>
         </div>
     </header>
