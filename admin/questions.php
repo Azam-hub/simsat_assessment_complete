@@ -305,7 +305,7 @@ if (isset($_POST['edit-question'])) {
         })
 
         // Edit Question
-        $('.edit-question-btn').click(function() {
+        $(document).on("click", ".edit-question-btn", function() {
 
             // resetting other options field
             $('#other-option-1').val("");
@@ -330,7 +330,7 @@ if (isset($_POST['edit-question'])) {
         })
 
         // Delete Course
-        $('.del-btn').click(function() {
+        $(document).on("click", ".del-btn", function() {
             let question_id = $(this).data('question-id');
 
             // let del = confirm('Are you sure you want to delete ' + course_name + ' ?');

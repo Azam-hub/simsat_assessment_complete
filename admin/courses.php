@@ -220,7 +220,7 @@ if (isset($_POST['edit-course'])) {
         })
 
         // Edit Course
-        $('.edit-course-btn').click(function() {
+        $(document).on("click", ".edit-course-btn", function() {
 
             // setting modal data
             $('#course-head').text('Edit Course');
@@ -233,7 +233,7 @@ if (isset($_POST['edit-course'])) {
         })
 
         // Delete Course
-        $('.del-btn').click(function() {
+        $(document).on("click", ".del-btn", function() {
             let course_id = $(this).data('course-id');
             let course_name = $(this).data('course-name');
 
