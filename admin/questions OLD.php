@@ -21,28 +21,17 @@ $course_name = $course_data['name'];
 
 
 if (isset($_POST['add-question'])) {
-    $question = $_POST['question'];
-    $correct_option = $_POST['correct_option'];
-    $options =  $_POST['options'];
+    $question = mysqli_real_escape_string($conn, $_POST['question']);
+    $correct_option = mysqli_real_escape_string($conn, $_POST['correct_option']);
+    $option_1 = mysqli_real_escape_string($conn, $_POST['option_1']);
+    $option_2 = mysqli_real_escape_string($conn, $_POST['option_2']);
+    $option_3 = mysqli_real_escape_string($conn, $_POST['option_3']);
 
-    $options = array_filter($options, function($value) {
-        return !empty($value);  // Remove empty values
-    });
-    
-    $other_options = json_encode($options);
-
-    // $insert_sql = "INSERT INTO `questions` (`question`, `correct_option`, `other_options`, `course_id`) 
-    // VALUES ('$question', '$correct_option', '$other_options', '$course_id')";
-    // $insert_res = mysqli_query($conn, $insert_sql);
-
+    $other_options = json_encode([$option_1, $option_2, $option_3]);
 
     $insert_sql = "INSERT INTO `questions` (`question`, `correct_option`, `other_options`, `course_id`) 
-    VALUES (?, ?, ?, ?)";
-
-    $stmt = mysqli_prepare($conn, $insert_sql);
-
-    mysqli_stmt_bind_param($stmt, "ssss", $question, $correct_option, $other_options, $course_id);
-    $insert_res = mysqli_stmt_execute($stmt);
+    VALUES ('$question', '$correct_option', '$other_options', '$course_id')";
+    $insert_res = mysqli_query($conn, $insert_sql);
 
     if ($insert_res) {
         $msg = success_msg("Question has been added successfully.");
@@ -50,27 +39,18 @@ if (isset($_POST['add-question'])) {
 }
 
 if (isset($_POST['edit-question'])) {
-    $question_id = $_POST['question_id'];
-    $question = $_POST['question'];
-    $correct_option = $_POST['correct_option'];
-    $options =  $_POST['options'];
+    $question_id = mysqli_real_escape_string($conn, $_POST['question_id']);
+    $question = mysqli_real_escape_string($conn, $_POST['question']);
+    $correct_option = mysqli_real_escape_string($conn, $_POST['correct_option']);
+    $option_1 = mysqli_real_escape_string($conn, $_POST['option_1']);
+    $option_2 = mysqli_real_escape_string($conn, $_POST['option_2']);
+    $option_3 = mysqli_real_escape_string($conn, $_POST['option_3']);
 
-    $options = array_filter($options, function($value) {
-        return !empty($value);  // Remove empty values
-    });
+    $other_options = json_encode([$option_1, $option_2, $option_3]);
 
-    $other_options = json_encode($options);
-
-    // $update_sql = "UPDATE `questions` SET `question`='$question', `correct_option`='$correct_option', `other_options`='$other_options', 
-    // `course_id`='$course_id' WHERE `id`='$question_id'";
-    // $update_res = mysqli_query($conn, $update_sql);
-
-    $update_sql = "UPDATE `questions` SET `question`=?, `correct_option`=?, `other_options`=?, `course_id`=? WHERE `id`='$question_id'";
-
-    $stmt = mysqli_prepare($conn, $update_sql);
-
-    mysqli_stmt_bind_param($stmt, "ssss", $question, $correct_option, $other_options, $course_id);
-    $update_res = mysqli_stmt_execute($stmt);
+    $update_sql = "UPDATE `questions` SET `question`='$question', `correct_option`='$correct_option', `other_options`='$other_options', 
+    `course_id`='$course_id' WHERE `id`='$question_id'";
+    $update_res = mysqli_query($conn, $update_sql);
 
     if ($update_res) {
         $msg = success_msg("Question has been updated successfully.");
@@ -125,13 +105,16 @@ if (isset($_POST['edit-question'])) {
                         <div class="row flex-column">
                             <label for="other-options" class="col form-label mb-2 required-label">Enter Other Options</label>
                             <div class="col-lg-6 col mb-2">
-                                <input type="text" name="options[]" id="other-option-1" class="w-100 form-control shadow-sm py-2 rounded-3 border-1 " placeholder="Enter Other Option 1">
+                                <input type="text" name="option_1" id="other-option-1" class="w-100 form-control shadow-sm py-2 rounded-3 border-1 " placeholder="Enter Other Option 1">
+                                <span class="text-danger error-msg"></span>
                             </div>
                             <div class="col-lg-6 col mb-2">
-                                <input type="text" name="options[]" id="other-option-2" class="w-100 form-control shadow-sm py-2 rounded-3 border-1 " placeholder="Enter Other Option 2">
+                                <input type="text" name="option_2" id="other-option-2" class="w-100 form-control shadow-sm py-2 rounded-3 border-1 " placeholder="Enter Other Option 2">
+                                <span class="text-danger error-msg"></span>
                             </div>
                             <div class="col-lg-6 col mb-2">
-                                <input type="text" name="options[]" id="other-option-3" class="w-100 form-control shadow-sm py-2 rounded-3 border-1 " placeholder="Enter Other Option 3">
+                                <input type="text" name="option_3" id="other-option-3" class="w-100 form-control shadow-sm py-2 rounded-3 border-1 " placeholder="Enter Other Option 3">
+                                <span class="text-danger error-msg"></span>
                             </div>
                         </div>
                     </div>
@@ -184,7 +167,7 @@ if (isset($_POST['edit-question'])) {
                                             <th>S. No.</th>
                                             <th>Questions</th>
                                             <th>Correct Option</th>
-                                            <th>Other Options</th>
+                                            <th>Other 3 Options</th>
                                             <th class="action-btns">Action</th>
                                             <th>Added On</th>
                                         </tr>
@@ -221,15 +204,12 @@ if (isset($_POST['edit-question'])) {
                     
                                                         data-question-id="'.$question['id'].'" 
                                                         data-question="'.htmlentities($question['question']).'" 
-                                                        data-question-correct_option="'.htmlentities($question['correct_option']).'"
-                                                        data-question-other_options="'.htmlspecialchars($question['other_options']).'"';
-
-                                                        // $other_options_arr = json_decode($question['other_options']);
-                                                        // foreach ($other_options_arr as $other_option) {
-                                                        //     echo 'data-question-other_options="'.htmlentities($other_option).'" ';
-                                                        // }
-                                                        
-                                                        echo '>Edit</button>
+                                                        data-question-correct_option="'.htmlentities($question['correct_option']).'" 
+                                                        data-question-other_option_1="'.htmlentities($other_options_arr[0]).'" 
+                                                        data-question-other_option_2="'.htmlentities($other_options_arr[1]).'" 
+                                                        data-question-other_option_3="'.htmlentities($other_options_arr[2]).'" 
+                    
+                                                        >Edit</button>
                                                         <button class="btn btn-sm btn-danger del-btn" data-question-id="'.$question['id'].'">Delete</button>
                                                     </td>
                                                     <td>'.date('h:i a <b>||</b> d M, Y', strtotime($question['created_at'])).'</td>
@@ -273,7 +253,7 @@ if (isset($_POST['edit-question'])) {
         // form validation
         $('.modal form').submit(function(e) {
             
-            let inputs = Array.from($('.modal form input[type=text]')).filter(input => input.name !== 'options[]');
+            let inputs = Array.from($('.modal form input[type=text]'))
             inputs.forEach(input => {
                 if ($(input).val() == "") {
                     
@@ -307,24 +287,15 @@ if (isset($_POST['edit-question'])) {
         // Edit Question
         $('.edit-question-btn').click(function() {
 
-            // resetting other options field
-            $('#other-option-1').val("");
-            $('#other-option-2').val("");
-            $('#other-option-3').val("");
-
             $('#question-head').text('Edit Question');
             $('#question-modal form button[type=submit]').attr("name", 'edit-question');
 
             $('#question-id').val($(this).data("question-id"));
             $('#question').val($(this).data("question"));
             $('#correct-option').val($(this).data("question-correct_option"));
-
-            let other_options = $(this).data("question-other_options");
-            
-            for (let i = 0; i < other_options.length; i++) {
-                const element = other_options[i];                
-                $(`#other-option-${i+1}`).val(element);
-            }
+            $('#other-option-1').val($(this).data("question-other_option_1"));
+            $('#other-option-2').val($(this).data("question-other_option_2"));
+            $('#other-option-3').val($(this).data("question-other_option_3"));
 
             $('#question-modal').modal('show');
         })

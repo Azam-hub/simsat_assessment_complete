@@ -109,12 +109,10 @@ $get_questions_res = mysqli_query($conn, $get_questions_sql);
                 if (mysqli_num_rows($get_questions_res) > 0) {
                     while ($row = mysqli_fetch_assoc($get_questions_res)) {
                         $correct_option = htmlentities($row['correct_option']);
-                        $other_options = json_decode($row['other_options']);
-                        
-                        $options = [$correct_option];
-                        foreach ($other_options as $other_option) {
-                            array_push($options, htmlentities($other_option));
-                        }
+                        $other_option_1 = htmlentities(json_decode($row['other_options'])[0]);
+                        $other_option_2 = htmlentities(json_decode($row['other_options'])[1]);
+                        $other_option_3 = htmlentities(json_decode($row['other_options'])[2]);
+                        $options = [$correct_option, $other_option_1, $other_option_2, $other_option_3];
                         shuffle($options);
                 
                         // echo print_r($options);
@@ -124,20 +122,24 @@ $get_questions_res = mysqli_query($conn, $get_questions_sql);
                             <p>
                                 <b>'.++$i.'.</b> '.htmlentities($row['question']).'
                                 <i class="fa-solid fa-circle-exclamation"></i>
-                            </p>';
-
-                            for ($j=0; $j < count($options); $j++) { 
-                                echo 
-                                '<div>
-                                    <input type="radio" id="question-'.$i.'_option-'.$j.'" name="question-'.$i.'" value="'.$options[$j].'">
-                                    <label for="question-'.$i.'_option-'.$j.'">'.$options[$j].'</label>
-                                </div>';
-                            }
-                            // <div>
-                            //     <input type="radio" id="question-'.$i.'_option-1" name="question-'.$i.'" value="'.$options[0].'">
-                            //     <label for="question-'.$i.'_option-1">'.$options[0].'</label>
-                            // </div>
-                        echo '</div>
+                            </p>
+                            <div>
+                                <input type="radio" id="question-'.$i.'_option-1" name="question-'.$i.'" value="'.$options[0].'">
+                                <label for="question-'.$i.'_option-1">'.$options[0].'</label>
+                            </div>
+                            <div>
+                                <input type="radio" id="question-'.$i.'_option-2" name="question-'.$i.'" value="'.$options[1].'">
+                                <label for="question-'.$i.'_option-2">'.$options[1].'</label>
+                            </div>
+                            <div>
+                                <input type="radio" id="question-'.$i.'_option-3" name="question-'.$i.'" value="'.$options[2].'">
+                                <label for="question-'.$i.'_option-3">'.$options[2].'</label>
+                            </div>
+                            <div>
+                                <input type="radio" id="question-'.$i.'_option-4" name="question-'.$i.'" value="'.$options[3].'">
+                                <label for="question-'.$i.'_option-4">'.$options[3].'</label>
+                            </div>
+                        </div>
                         ';
                     }
                 } else {
